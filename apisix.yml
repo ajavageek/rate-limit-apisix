@@ -6,21 +6,29 @@ routes:
     plugins:
       key-auth: ~
 
-consumers:
-  - username: johndoe
+consumer_groups:
+  - id: 1
     plugins:
-      key-auth:
-        key: john
       limit-count:
         count: 1
         time_window: 60
         rejected_code: 429
-  - username: janedoe
+  - id: 2
     plugins:
-      key-auth:
-        key: jane
       limit-count:
         count: 5
         time_window: 60
         rejected_code: 429
+
+consumers:
+  - username: johndoe
+    group_id: 1
+    plugins:
+      key-auth:
+        key: john
+  - username: janedoe
+    group_id: 2
+    plugins:
+      key-auth:
+        key: jane
 #END
