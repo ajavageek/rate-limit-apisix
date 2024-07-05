@@ -1,0 +1,11 @@
+routes:
+  - uri: /get
+    upstream:
+      nodes:
+        "httpbin:80": 1
+    plugins:
+      limit-count:
+        count: 1
+        time_window: 60
+        rejected_code: 429
+#END
