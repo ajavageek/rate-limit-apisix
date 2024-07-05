@@ -4,8 +4,23 @@ routes:
       nodes:
         "httpbin:80": 1
     plugins:
+      key-auth: ~
+
+consumers:
+  - username: johndoe
+    plugins:
+      key-auth:
+        key: john
       limit-count:
         count: 1
+        time_window: 60
+        rejected_code: 429
+  - username: janedoe
+    plugins:
+      key-auth:
+        key: jane
+      limit-count:
+        count: 5
         time_window: 60
         rejected_code: 429
 #END
