@@ -22,10 +22,14 @@ consumer_groups:
 
 consumers:
   - username: johndoe
-    group_id: 1
+    group_id: 2
     plugins:
       key-auth:
         key: john
+      limit-count:
+        count: 1
+        time_window: 60
+        rejected_code: 429
   - username: janedoe
     group_id: 2
     plugins:
